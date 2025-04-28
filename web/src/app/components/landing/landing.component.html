@@ -1,0 +1,71 @@
+<div class="body">
+    <div class="sensor-container">
+        <div *ngFor="let sensor of sensorsData" class="sensor-data" >
+          <app-weathercards
+            [sensor]="sensor.sensor"
+            [temperature]="sensor.temperature"
+            [humidity]="sensor.humidity"
+            [air_pressure]="sensor.air_pressure"
+            [rain]="sensor.regen === 1"
+            [date]="sensor.DATE_TIME"
+            (click)="openDialog(sensor.sensor)"
+            >
+        </app-weathercards>
+        </div>
+        <div class="charts" *ngIf="sensorsData.length >= 1">
+          <div id="yearly">
+            <app-details
+            [title]="'Humidity (%) of the actual year of all sensors'"
+            [data]="statHumDataCurrentYear"
+            [labels]="statLabelCurrentYear"
+            >
+            </app-details>
+            <app-details
+            [title]="'Temperature (°C) of the actual year of all sensors'"
+            [data]="statTempDataCurrentYear"
+            [labels]="statLabelCurrentYear"
+            >
+            </app-details>
+           
+          </div>
+          <div id="alltime">
+            <app-details
+            [title]="'Humidity (%) of all time of all sensors'"
+            [data]="statHumDataAllTime"
+            [labels]="statLabelAllTime"
+            >
+            </app-details>
+            <app-details
+            [title]="'Temperature (°C) of all time of all sensors'"
+            [data]="statTempDataAllTime"
+            [labels]="statLabelAllTime"
+            >
+            </app-details>
+          </div>
+        </div>
+    </div>
+    
+    <!-- loading container: https://uiverse.io/AnnixArt/wonderful-liger-82 -->
+    <div *ngIf="sensorsData.length === 0">
+      <div class="container">
+        <div class="coffee-header">
+          <div class="coffee-header__buttons coffee-header__button-one"></div>
+          <div class="coffee-header__buttons coffee-header__button-two"></div>
+          <div class="coffee-header__display"></div>
+          <div class="coffee-header__details"></div>
+        </div>
+        <div class="coffee-medium">
+          <div class="coffe-medium__exit"></div>
+          <div class="coffee-medium__arm"></div>
+          <div class="coffee-medium__liquid"></div>
+          <div class="coffee-medium__smoke coffee-medium__smoke-one"></div>
+          <div class="coffee-medium__smoke coffee-medium__smoke-two"></div>
+          <div class="coffee-medium__smoke coffee-medium__smoke-three"></div>
+          <div class="coffee-medium__smoke coffee-medium__smoke-for"></div>
+          <div class="coffee-medium__cup"></div>
+        </div>
+        <div class="coffee-footer"></div>
+      </div>      
+    </div>
+    
+ </div>

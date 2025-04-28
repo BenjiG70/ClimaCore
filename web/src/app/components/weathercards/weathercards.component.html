@@ -1,0 +1,26 @@
+  <div id="weather_wrapper">
+	<div class="weatherCard">
+		<div class="currentTemp">
+			<!-- in my case C for Celsius could be changed to F (Fahrenheit) -->
+			<span class="temp">{{temperature}}&deg;C</span>
+			<span class="location">{{sensor}}</span>
+		</div>
+		<div class="currentWeather">
+			<span id="weather-icon" class="conditions">
+				<!-- if you want just a emblem/symbol -->
+				 <!-- example with bmw (https://icons8.com/icons/set/bmw) -->
+				<div class="icons8-bmw"></div>
+
+				<!-- <span *ngIf="rain">&#xf018;</span>
+                <span *ngIf="!rain">&#xf00d;</span> -->
+              </span>
+			<div class="info_top">
+				<span class="humidity">{{humidity}}%</span>
+				<span class="pressure">{{air_pressure}}hPa</span>
+			</div>
+            <div class="info_bottom">
+                <span class="date"> {{formattedDate}}</span>
+            </div>
+		</div>
+	</div>
+</div>+

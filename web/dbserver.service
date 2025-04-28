@@ -1,0 +1,13 @@
+[Unit]
+Description=Start Database Server via JavaScript
+After=network.target
+
+[Service]
+ExecStart=/home/benji/.nvm/versions/node/v22.9.0/bin/node /home/benji/git/WeatherGuardian/web/src/app/server/database.js
+WorkingDirectory=/home/benji/git/WeatherGuardian/web/src/app/server/
+Restart=always
+User=benji
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
