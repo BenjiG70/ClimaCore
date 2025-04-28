@@ -1,4 +1,4 @@
-# WeatherGuardian
+# ClimaCore
 
 ## Overview
 This repo is build for a weatherstation powered by a WEMOS D1 Mini. 
