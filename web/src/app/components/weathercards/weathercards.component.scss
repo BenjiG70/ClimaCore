@@ -13,6 +13,7 @@ body {
 	height: 200px;
 	font-family: 'Open Sans';
 	position: relative;
+	display: grid;
 }
 .currentTemp{
 	width: 220px;
@@ -58,8 +59,8 @@ body {
 	width: 180px;
 	height: 30px;
 	font-size: 17px;
-	position: absolute;
-	bottom: 1;
+	position:absolute;
+	bottom: 22;
 	right: 0;
 	background: rgb(15, 142, 196);
 	font-weight: 700;
@@ -79,7 +80,7 @@ body {
 	font-size: 17px;
 }
 .humidity {
-	width: 40%;
+	width: 100%;
 	position: absolute;
 	left: 10px;
 	word-spacing: 60px;

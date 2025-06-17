@@ -6,10 +6,6 @@ import { ChartModule } from 'primeng/chart';
   styleUrl: './details.component.scss'
 })
 export class DetailsComponent {
-  labels_year = ['January', 'February', 'March', 'April', 'May', 'Juni', 'July', 'August', 'September', 'October', 'November', 'Dezember'];
-  labels_week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  labels_workweek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-  labels_hours = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'];
 
   options_bar = {
     responsive: false,
@@ -20,6 +16,10 @@ export class DetailsComponent {
       }
     }
   };
+  labels_year = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+  labels_week = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'];
+  labels_workweek = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'];
+  labels_hours = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'];
 
   @Input() sensor:any="";
   @Input() title:string = "undefined";

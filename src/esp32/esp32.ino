@@ -11,25 +11,25 @@
 #include <WiFi.h>
 #include <HTTPClient.h>
 
-#define DHTPIN 2
+#define DHTPIN 25
 
 #define DHTTYPE DHT11
 
 DHT dht(DHTPIN, DHTTYPE);
 
-// Definieren der Server-Base URL 
+// Definieren der Server-Base URL
 const char* baseURL = DATABASE_SERVER;
 
 // Sensornamen definieren
-const char* sensorName = "test";
+const char* sensorName = "MDR-Turm";
 
 // Definieren der LED-Pin
-const int led = 3;
+const int led = 26;
 
 void setup() {
 
   // put your setup code here, to run once:
-  Serial.begin(9600);
+  Serial.begin(115200);
 
   // starte den Sensor
   dht.begin();
@@ -49,7 +49,8 @@ void setup() {
 
 void loop() {
   digitalWrite(led, HIGH);
-  delay(2000);
+  delay(1000);
+  digitalWrite(led, LOW);
 
   if (WiFi.status() == WL_CONNECTED) {
     HTTPClient http;
@@ -63,10 +64,8 @@ void loop() {
       return;
     }
 
-    String jsonPayload = "{ \"sensor\": \"" + String(sensorName) + "\"" +
-                         ", \"temperature\": " + String(temperature) +
-                         ", \"humidity\": " + String(humidity) + " }";
-    String url = String(baseURL) + "/insert/data";
+    String jsonPayload = "{ \"sensor\": \"" + String(sensorName) + "\"" + ", \"temperature\": " + String(temperature) + ", \"humidity\": " + String(humidity) + ", \"air_pressure\": " + NULL + " }";
+    String url = String(baseURL) + "/insert/data/";
 
     http.begin(wifiClient, url);
     http.addHeader("Content-Type", "application/json");
@@ -95,7 +94,5 @@ void loop() {
     Serial.println("Ausgabe erfolgreich!");
     Serial.println("------------------------------------");
   }
-
-  digitalWrite(led, LOW);
-  delay(1000);
+  delay(900000);
 }

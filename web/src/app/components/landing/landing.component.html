@@ -8,20 +8,19 @@
             [air_pressure]="sensor.air_pressure"
             [rain]="sensor.regen === 1"
             [date]="sensor.DATE_TIME"
-            (click)="openDialog(sensor.sensor)"
             >
         </app-weathercards>
         </div>
         <div class="charts" *ngIf="sensorsData.length >= 1">
           <div id="yearly">
             <app-details
-            [title]="'Humidity (%) of the actual year of all sensors'"
+            [title]="'Luftfeuchtigkeit in % der letzten 12 Monate'"
             [data]="statHumDataCurrentYear"
             [labels]="statLabelCurrentYear"
             >
             </app-details>
             <app-details
-            [title]="'Temperature (°C) of the actual year of all sensors'"
+            [title]="'Temperatur in °C der letzten 12 Monate'"
             [data]="statTempDataCurrentYear"
             [labels]="statLabelCurrentYear"
             >
@@ -30,13 +29,13 @@
           </div>
           <div id="alltime">
             <app-details
-            [title]="'Humidity (%) of all time of all sensors'"
+            [title]="'Luftfeuchtigkeit in % seit Datenerfassung'"
             [data]="statHumDataAllTime"
             [labels]="statLabelAllTime"
             >
             </app-details>
             <app-details
-            [title]="'Temperature (°C) of all time of all sensors'"
+            [title]="'Temperatur in °C seit Datenerfassung'"
             [data]="statTempDataAllTime"
             [labels]="statLabelAllTime"
             >

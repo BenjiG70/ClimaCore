@@ -99,7 +99,7 @@ app.get('/get/:sensor/data/all', (req, res) => {
  */
 app.get('/get/:sensor/data/last', (req, res) => {
   const sensor = req.params.sensor;
-  const sql = `SELECT * FROM HISTORY WHERE sensor = "${sensor}" ORDER BY ID DESC LIMIT 1`;
+  const sql = `SELECT * FROM HISTORY WHERE sensor = "${sensor}" ORDER BY DATE_TIME DESC LIMIT 1`;
   getData(sql, res)
   }
 );

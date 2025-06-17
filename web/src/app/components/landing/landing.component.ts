@@ -68,8 +68,8 @@ export class LandingComponent implements OnInit, OnDestroy {
   // Hilfsfunktion zur Konvertierung des Monatsindex in den Monatsnamen
 getMonthName(index: number): string {
   const monthNames = [
-      "January", "February", "March", "April", "May", "June",
-      "July", "August", "September", "October", "November", "December"
+      "Januar", "Februar", "März", "April", "Mai", "Juni",
+      "Juli", "August", "September", "Oktober", "November", "Dezember"
   ];
   return monthNames[index];
 }
@@ -133,11 +133,25 @@ sortDataByMonth(time: number[], temp: number[], hum: number[], filterYear?: numb
 
 // Funktion zur Vorbereitung der Chart-Daten für ein gegebenes Jahr
 prepareChartData(monthlyAverages: { [key: string]: { avgTemp: number, avgHum: number } }, year: number) {
-  const monthLabels = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const date = new Date();
+  const start_month = date.getUTCMonth();
+  var monthLabels = [];
+  for(var i = 0; monthLabels.length <= 12; i++){
+    if(start_month - i >= 0){
+        monthLabels[i] = this.getMonthName(start_month - i)
+    }else{
+        for(var j = 0; monthLabels.length <= 12; j++){
+            monthLabels[i] = this.getMonthName(12 - j);
+            i++;
+        }
+    }
+  }
+  const Labels = monthLabels.reverse();
+  //const monthLabels = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
   const tempData: number[] = [];
   const humData: number[] = [];
 
-  monthLabels.forEach((monthName, index) => {
+  Labels.forEach((monthName, index) => {
       const key = `${monthName} ${year}`;
       const data = monthlyAverages[key];
 
