@@ -3,8 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { apiData } from '../datatypes/database_interaction'
 
-import dotenv from 'dotenv';
-dotenv.config
 @Injectable({
   providedIn: 'root'
 })
