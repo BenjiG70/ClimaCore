@@ -4,7 +4,7 @@ import time
 from datetime import datetime, timedelta
 
 # Basis-URL der API (ersetzen Sie "http://localhost:3000" durch Ihre Server-URL)
-url = 'http://<ip>:<port>/insert/data'
+url = 'http://127.0.0.1:4202/insert/data'
 
 # Funktion, die ein zufälliges Datum innerhalb des letzten Jahres bis heute als Unix-Timestamp erstellt
 def generate_random_timestamp():
@@ -19,7 +19,7 @@ for _ in range(100):
         "temperature": round(random.uniform(-10, 30), 2),  # Zufällige Temperatur zwischen -10°C und 30°C
         "humidity": round(random.uniform(0, 100), 2),      # Luftfeuchtigkeit zwischen 0% und 100%
         "air_pressure": round(random.uniform(950, 1050), 2), # Luftdruck zwischen 950 und 1050 hPa
-        "sensor": f"sensor_2", #{random.randint(1, 10)}       # Sensorname z.B. sensor_1 bis sensor_10
+        "sensor": f"MDR-Turm", #{random.randint(1, 10)}       # Sensorname z.B. sensor_1 bis sensor_10
         "date_time": generate_random_timestamp()           # Zufälliges Datum als Unix-Timestamp
     }
     

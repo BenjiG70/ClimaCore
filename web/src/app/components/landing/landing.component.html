@@ -1,17 +1,20 @@
 <div class="body">
     <div class="sensor-container">
         <div *ngFor="let sensor of sensorsData" class="sensor-data" >
-          <app-weathercards
+          <app-weathercards class="cards"
             [sensor]="sensor.sensor"
             [temperature]="sensor.temperature"
             [humidity]="sensor.humidity"
             [air_pressure]="sensor.air_pressure"
             [rain]="sensor.regen === 1"
             [date]="sensor.DATE_TIME"
+            (click)="openDialog(sensor)"
             >
-        </app-weathercards>
+          </app-weathercards>
         </div>
+        <!-- 
         <div class="charts" *ngIf="sensorsData.length >= 1">
+          
           <div id="yearly">
             <app-details
             [title]="'Luftfeuchtigkeit in % der letzten 12 Monate'"
@@ -42,7 +45,7 @@
             </app-details>
           </div>
         </div>
-    </div>
+    </div> -->
     
     <!-- loading container: https://uiverse.io/AnnixArt/wonderful-liger-82 -->
     <div *ngIf="sensorsData.length === 0">

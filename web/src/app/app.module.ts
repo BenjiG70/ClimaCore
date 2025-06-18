@@ -8,13 +8,15 @@ import { WeathercardsComponent } from './components/weathercards/weathercards.co
 import { DetailsComponent } from './components/details/details.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ChartModule } from 'primeng/chart';
+import { PopupComponent } from './components/popup/popup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingComponent,
     WeathercardsComponent,
-    DetailsComponent
+    DetailsComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,

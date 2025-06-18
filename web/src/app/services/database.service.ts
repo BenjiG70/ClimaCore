@@ -49,6 +49,14 @@ export class DatabaseService {
     return this.http.get<apiData>(`${this.apiUrl}/get/data/since/${startDate}`);
   }
 
+  /**
+   * Ruft Sensordaten von einem Sensor seit einem bestimmten Datum ab.
+   * @param startDate Das Startdatum im ISO-Format.
+   */
+  getSensorDataSince(startDate: string, sensor:string): Observable<apiData> {
+    return this.http.get<apiData>(`${this.apiUrl}/get/${sensor}/since/${startDate}`);
+  }
+
   getDataOrderedByMonthBySensor(sensor:string, year:number): Observable<apiData>{
     return this.http.get<apiData>(`${this.apiUrl}/get/${sensor}/monthlyordered/${year}`);
   }
@@ -66,11 +74,5 @@ export class DatabaseService {
   getTempAVGDataBySensor(sensor:string){
     return this.http.get<any>(`${this.apiUrl}/get/${sensor}/data/avg/temp`);
   }
-  /**
-   * Fügt neue Sensordaten in die Datenbank ein.
-   * @param weatherData Die zu speichernden Sensordaten.
-   */
-  // insertWeatherData(weatherData: any): Observable<any> {
-  //   return this.http.post<any>(`${this.apiUrl}/insert/weatherdata`, weatherData);
-  // }
+
 }

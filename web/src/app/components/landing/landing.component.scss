@@ -5,7 +5,10 @@
   gap: 10px;  /* Abstand zwischen den Sensor-Containern */
   justify-content: center; /* Zentriert in der Mitte */
 }
-
+.cards{
+  display: flex;
+  margin: 0 0 0 0;
+}
 .sensor-data {
   margin: 10px;
   width: 400px;  /* Feste Breite für jeden Sensor-Container */
