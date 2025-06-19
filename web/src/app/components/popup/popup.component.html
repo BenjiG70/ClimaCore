@@ -9,9 +9,30 @@
 
     <div class="stats">
       <app-details
-      *ngIf="label.length"
-      [labels]="label"
-      [data]="statData"
+      *ngIf="dayLabel.length"
+      [labels]="dayLabel"
+      [data]="dailyStats"
+      [style]="'line'"
+      >
+      </app-details>
+      <app-details
+      *ngIf="weekLabel.length"
+      [labels]="weekLabel"
+      [data]="weeklyStats"
+      [style]="'line'"
+      >
+      </app-details>
+      <app-details
+      *ngIf="monthLabel.length"
+      [labels]="monthLabel"
+      [data]="monthlyStats"
+      [style]="'line'"
+      >
+      </app-details>
+      <app-details
+      *ngIf="yearLabel.length"
+      [labels]="yearLabel"
+      [data]="yearlyStats"
       [style]="'line'"
       >
       </app-details>

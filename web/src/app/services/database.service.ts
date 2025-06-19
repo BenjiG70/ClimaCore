@@ -48,7 +48,6 @@ export class DatabaseService {
         start = date.setFullYear(date.getFullYear() - 1);
         break;
     }
-    console.log(start, end);
     return this.http.get<apiData>(`${this.apiUrl}/get/${sensor}/data/${format}/${start}/${end}`)
   }
 

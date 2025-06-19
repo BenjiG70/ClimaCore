@@ -14,26 +14,56 @@ export class PopupComponent {
   label: string[] = [];
 
   statData: number[][] = [];
+  dailyStats: object[]= [{}, {}];
+  dayLabel: string[]=[];
+  weeklyStats: object[]= [{}, {}];
+  weekLabel:string[]=[];
+  monthlyStats: object[]= [{}, {}];
+  monthLabel:string[]=[];
+  yearlyStats: object[]= [{}, {}];
+  yearLabel:string[]=[];
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private db: DatabaseService) {
     this.formattedDate = new Date(Number(data.DATE_TIME)).toLocaleString();
-    
-    this.getData().then(([label, temp, hum]) => {
-      this.label = label;
-      this.statData.push(temp);
-      this.statData.push(hum);
-      console.log(this.statData);
-    }
-  );
-
-
-  }  
+    this.loadData();
+  }
   closeDialog(){
     
   }
 
-  getData(): Promise<[string[], number[], number[]]> {
+      async loadData() {
+      let [label, temp, hum] = await this.getData('H');
+      this.dayLabel = label;
+      this.dailyStats = [
+        { label: 'Temperatur', data: temp },
+        { label: 'Luftfeuchtigkeit', data: hum }
+      ];
+
+      [label, temp, hum] = await this.getData('W');
+      this.weekLabel = label;
+      this.weeklyStats = [
+        { label: 'Temperatur', data: temp },
+        { label: 'Luftfeuchtigkeit', data: hum }
+      ];
+
+      [label, temp, hum] = await this.getData('M');
+      this.monthLabel = label;
+      this.monthlyStats = [
+        { label: 'Temperatur', data: temp },
+        { label: 'Luftfeuchtigkeit', data: hum }
+      ];
+
+      [label, temp, hum] = await this.getData('Y');
+      this.yearLabel = label;
+      this.yearlyStats = [
+        { label: 'Temperatur', data: temp },
+        { label: 'Luftfeuchtigkeit', data: hum }
+      ];
+    }
+
+  getData(intervall:string): Promise<[string[], number[], number[]]> {
     return new Promise((resolve, reject) => {
-      this.db.getSensorDataByRange(this.data.sensor, 'H', Date.now()).subscribe(
+      this.db.getSensorDataByRange(this.data.sensor, intervall, Date.now()).subscribe(
         (answer: unknown) => {
           if (typeof answer === 'object' && answer !== null) {
             this.stat = Object.values(answer as Record<string, unknown>);
