@@ -30,7 +30,7 @@ export class DatabaseService {
    * @param enddate Format: YYYY-MM-DD HH:mm:SS
    * @returns 
    */
-  getSensorDataByRange(sensor:string, format:string, enddate:string): Observable<apiData> {
+  getSensorDataByRange(sensor:string, format:string, enddate:number): Observable<apiData> {
     const date = new Date(enddate);
     const end = date.getTime();
     var start;

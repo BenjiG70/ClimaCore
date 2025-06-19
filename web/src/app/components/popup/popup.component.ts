@@ -33,7 +33,7 @@ export class PopupComponent {
 
   getData(): Promise<[string[], number[], number[]]> {
     return new Promise((resolve, reject) => {
-      this.db.getSensorDataByRange(this.data.sensor, 'H', new Date().toLocaleString()).subscribe(
+      this.db.getSensorDataByRange(this.data.sensor, 'H', Date.now()).subscribe(
         (answer: unknown) => {
           if (typeof answer === 'object' && answer !== null) {
             this.stat = Object.values(answer as Record<string, unknown>);
