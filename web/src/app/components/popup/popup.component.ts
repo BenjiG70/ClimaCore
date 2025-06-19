@@ -19,9 +19,9 @@ export class PopupComponent {
     
     this.getData().then(([label, temp, hum]) => {
       this.label = label;
-      this.statData[0]=temp;
-      this.statData[1]=hum;
-
+      this.statData.push(temp);
+      this.statData.push(hum);
+      console.log(this.statData);
     }
   );
 

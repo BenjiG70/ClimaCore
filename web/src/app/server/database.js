@@ -128,14 +128,13 @@ app.get('/get/:sensor/data/:format/:start/:end', (req, res) => {
   switch(format){
     case('H'):
       sql = `SELECT
-        strftime('%H', datetime(DATE_TIME / 1000, 'unixepoch', 'localtime')) AS time,
+        strftime('%d.%m.%Y %H', datetime(DATE_TIME / 1000, 'unixepoch', 'localtime')) AS time,
           AVG(temperature) AS temp,
           AVG(humidity) AS hum
         FROM HISTORY
         WHERE sensor = '${sensor}'
         AND DATE_TIME BETWEEN ${startdate} AND ${enddate}
-        GROUP BY time
-        ORDER BY time;`
+        GROUP BY time;`
       break;
     case('W'):
       sql = `SELECT

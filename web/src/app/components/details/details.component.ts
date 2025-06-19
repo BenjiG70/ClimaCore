@@ -9,11 +9,11 @@ import { ChartModule } from 'primeng/chart';
 export class DetailsComponent {
   
   @Input() sensor:any;
-  @Input() title?:string;
+  @Input() data:number[][] = [];
+  //@Input() title?:string;
   @Input() style?:'bar' | 'line' | 'scatter' | 'bubble' | 'pie' | 'doughnut' | 'polarArea' | 'radar';
   @Input() options:any;
   @Input() labels?:string[];
-  @Input() data?:number[][];
   @Input() chartColor?:string;
 
   src: any;
@@ -29,16 +29,22 @@ export class DetailsComponent {
   updateChart() {
     this.src = {
       labels: this.labels || [],
+      backgroundColor: this.getColorArray(),
+      borderColor: this.getColorArray(),
+      borderWidth: 1,
+      fill: this.style === 'line' ? false : true,
+      type: this.style || 'bar',
       datasets: [
         {
-          label: this.title || (this.sensor?.name ?? 'Sensor'),
-          data: this.data || [],
-          backgroundColor: this.getColorArray(),
-          borderColor: this.getColorArray(),
-          borderWidth: 1,
-          fill: this.style === 'line' ? false : true,
-          type: this.style || 'bar',
+          title: 'Temperatur',
+          data: this.data[0],
+          
+        },
+        {
+          title: 'Luftfeuchtigkeit',
+          data: this.data[1],
         }
+      
       ]
     };
   }
