@@ -8,13 +8,14 @@
     </div>
 
     <div class="stats">
-        <app-details
+      <app-details
+      *ngIf="label.length"
+      [labels]="label"
+      [data]="statData"
+      [style]="'line'"
+      [title]="'test'"
+      >
 
-        >
-        </app-details>
-         <app-details
-
-        >
-        </app-details>
+      </app-details>
     </div>
 </div>

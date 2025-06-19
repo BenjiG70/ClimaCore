@@ -115,14 +115,62 @@ app.get('/get/all/data/since/:startDate', (req, res) => {
   }
 );
 /**
- * getWeatherDataSinceBySensor
- * TBD
+ * @param sensor 
+ * @param format
+ * @param end YYYY-MM-DD
  */
-app.get('/get/:sensor/data/since/:startDate', (req, res) => {
+app.get('/get/:sensor/data/:format/:start/:end', (req, res) => {
   const sensor = req.params.sensor;
-  const startDate = req.params.startDate;
-  // work in progress
-  const sql = `SELECT COUNT(regen) FROM HISTORY WHERE date_time like ${startDate}`;
+  const enddate = req.params.end;
+  const format = req.params.format;
+  const startdate = req.params.start;
+  var sql;
+  switch(format){
+    case('H'):
+      sql = `SELECT
+        strftime('%H', datetime(DATE_TIME / 1000, 'unixepoch', 'localtime')) AS time,
+          AVG(temperature) AS temp,
+          AVG(humidity) AS hum
+        FROM HISTORY
+        WHERE sensor = '${sensor}'
+        AND DATE_TIME BETWEEN ${startdate} AND ${enddate}
+        GROUP BY time
+        ORDER BY time;`
+      break;
+    case('W'):
+      sql = `SELECT
+          strftime('%Y-%m-%d', datetime(DATE_TIME / 1000, 'unixepoch', 'localtime')) AS time,
+          AVG(temperature) AS temp,
+          AVG(humidity) AS hum
+        FROM HISTORY
+        WHERE sensor = '${sensor}'
+        AND DATE_TIME BETWEEN ${startdate} AND ${enddate}
+        GROUP BY time
+        ORDER BY time;`
+      break;
+    case('M'):
+      sql = `SELECT
+          strftime('%Y-%m-%d', datetime(DATE_TIME / 1000, 'unixepoch', 'localtime')) AS time,
+          AVG(temperature) AS temp,
+          AVG(humidity) AS hum
+        FROM HISTORY
+        WHERE sensor = '${sensor}'
+        AND DATE_TIME BETWEEN ${startdate} AND ${enddate}
+        GROUP BY time
+        ORDER BY time;`
+      break;
+    case('Y'):
+      sql = `SELECT
+        strftime('%Y-%m', datetime(DATE_TIME / 1000, 'unixepoch', 'localtime')) AS time,
+        AVG(temperature) AS temp,
+        AVG(humidity) AS hum
+        FROM HISTORY
+        WHERE sensor = '${sensor}'
+        AND DATE_TIME BETWEEN ${startdate} AND ${enddate}
+        GROUP BY time
+        ORDER BY time;`
+      break;
+  }
   getData(sql, res);
   }
 );

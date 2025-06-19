@@ -24,6 +24,34 @@ export class DatabaseService {
   }
 
   /**
+   * 
+   * @param sensor 
+   * @param format Format: H|W|M|Y
+   * @param enddate Format: YYYY-MM-DD HH:mm:SS
+   * @returns 
+   */
+  getSensorDataByRange(sensor:string, format:string, enddate:string): Observable<apiData> {
+    const date = new Date(enddate);
+    const end = date.getTime();
+    var start;
+    switch(format){
+      case('H'):
+        start = date.setDate(date.getDate() - 1);
+        break;
+      case('W'):
+        start = date.setDate(date.getDate() - 7);
+        break;
+      case('M'):
+        start = date.setMonth(date.getMonth() -1);
+        break;
+      case('Y'):
+        start = date.setFullYear(date.getFullYear() - 1);
+        break;
+    }
+    return this.http.get<apiData>(`${this.apiUrl}/get/${sensor}/data/${format}/${start}/${end}`)
+  }
+
+  /**
    * Ruft die Sensordaten für einen bestimmten Sensor ab.
    * @param sensor Der Name des Sensors.
    */

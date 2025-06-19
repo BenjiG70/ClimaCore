@@ -8,7 +8,7 @@ url = 'http://127.0.0.1:4202/insert/data'
 
 # Funktion, die ein zufälliges Datum innerhalb des letzten Jahres bis heute als Unix-Timestamp erstellt
 def generate_random_timestamp():
-    start_date = datetime.now() - timedelta(days=365)  # Vor einem Jahr
+    start_date = datetime.now() - timedelta(days=1)  # Vor einem Jahr
     end_date = datetime.now()
     random_date = start_date + (end_date - start_date) * random.random()
     return int(random_date.timestamp())  # Unix-Timestamp als Ganzzahl zurückgeben
