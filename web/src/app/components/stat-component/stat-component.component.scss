@@ -40,3 +40,31 @@ $another_blue: #8cabbb;
     color: white;
     text-align: center;
 }
+
+@media screen and (max-width: 768px) {
+  .button {
+    width: 100%;               // Volle Breite für bessere Usability
+    height: 50px;              // Etwas mehr Höhe für Touch-Ziel
+    font-size: 16px;           // Größere Schrift für bessere Lesbarkeit
+  }
+
+  .content {
+    padding: 0 15px;           // Innenabstand an den Seiten
+  }
+
+  .header {
+    font-size: 18px;           // Etwas kleinere Schrift für kompaktere Darstellung
+    height: auto;              // Höhe flexibel
+    padding: 10px 0;           // Vertikales Padding statt fixer Höhe
+  }
+}
+@media screen and (max-width: 480px) {
+  .button {
+    font-size: 14px;
+    height: 45px;
+  }
+
+  .header {
+    font-size: 16px;
+  }
+}
