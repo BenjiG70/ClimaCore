@@ -5,6 +5,12 @@ import { Subscription, interval } from 'rxjs';
 import { Router } from '@angular/router';
 import { SensorService } from '../../services/sensor.service';
 import { ChartPreperationService } from '../../services/chart-preperation.service';
+interface StatsPeriod{
+  dailyStats: (string[] | StatData[]),
+  weeklyStats: (string[] | StatData[]),
+  monthlyStats: (string[] | StatData[]),
+  yearlyStats: (string[] | StatData[])
+}
 interface StatData {
   label: string;
   data: number[];
@@ -29,7 +35,9 @@ export class LandingComponent implements OnInit, OnDestroy {
   statHumDataAllTime: any;
   statLabelAllTime: any;
 
-  statData: number[][] = [];
+statData: {
+  [key: string]: StatsPeriod} = {};
+
   dailyStats: string[] | StatData[]=[];
   dayLabel: string[] | StatData[]=[];
   weeklyStats: string[] | StatData[]=[];
@@ -38,6 +46,19 @@ export class LandingComponent implements OnInit, OnDestroy {
   monthLabel: string[] | StatData[]=[];
   yearlyStats: string[] | StatData[]=[];
   yearLabel:string[] | StatData[]=[];
+
+  dailyTemp: StatData[]=[];
+  dailyHum: StatData[]=[];
+
+  weeklyTemp: StatData[]=[];
+  weeklyHum: StatData[]=[];
+
+  monthlyTemp: StatData[]=[];
+  monthlyHum: StatData[]=[];
+
+  yearlyTemp: StatData[]=[];
+  yearlyHum: StatData[]=[];
+
   @ViewChild('scrollContainer', { static: true }) scrollContainer!: ElementRef;
 
   constructor(
@@ -146,10 +167,64 @@ async updateSensorsData(): Promise<void> {
         this.weekLabel, this.weeklyStats,
         this.monthLabel, this.monthlyStats,
         this.yearLabel, this.yearlyStats
-      ] = await this.charts.loadData(sens); // <-- sens verwenden, nicht sensor
+      ] = await this.charts.loadData(sens);
+      if (!this.statData[sens]) {
+        this.statData[sens] = {} as any;
+      }
+      this.statData[sens].dailyStats=this.dailyStats;
+      this.statData[sens].weeklyStats=this.weeklyStats;
+      this.statData[sens].monthlyStats=this.monthlyStats;
+      this.statData[sens].yearlyStats=this.yearlyStats;
     }
 
+    for (const key in this.statData){
+      let newStat: StatData = {
+        label: key,
+        data: (this.statData[key].dailyStats as StatData[])[0].data
+      }
+      this.dailyTemp.push(newStat);
+      newStat = {
+        label: key,
+        data: (this.statData[key].dailyStats as StatData[])[1].data
+      }
+      this.dailyHum.push(newStat);
 
+      newStat = {
+        label: key,
+        data: (this.statData[key].weeklyStats as StatData[])[0].data
+      }
+      this.weeklyTemp.push(newStat);
+      newStat = {
+        label: key,
+        data: (this.statData[key].weeklyStats as StatData[])[1].data
+      }
+      this.weeklyHum.push(newStat);
+
+      newStat = {
+        label: key,
+        data: (this.statData[key].monthlyStats as StatData[])[0].data
+      }
+      this.monthlyTemp.push(newStat);
+      newStat = {
+        label: key,
+        data: (this.statData[key].monthlyStats as StatData[])[1].data
+      }
+      this.monthlyHum.push(newStat);
+
+      newStat = {
+        label: key,
+        data: (this.statData[key].yearlyStats as StatData[])[0].data
+      }
+      this.yearlyTemp.push(newStat);
+      newStat = {
+        label: key,
+        data: (this.statData[key].yearlyStats as StatData[])[1].data
+      }
+      this.yearlyHum.push(newStat);
+
+
+
+    }
   } catch (error) {
     console.error('Error updating sensors data:', error);
   }

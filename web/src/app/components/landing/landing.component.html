@@ -24,15 +24,93 @@
       <app-details
             *ngIf="dayLabel.length"
             [labels]="dayLabel"
-            [data]="dailyStats"
+            [data]="dailyTemp"
             [style]="'line'"
         >
       </app-details>
   </div>
 
   <div class="details-block">
-    <p>Temperatur der letzten 24 Stunden</p>
-    <app-details></app-details>
+    <p>Luftfeuchtigkeit der letzten 24 Stunden</p>
+    <app-details
+            *ngIf="dayLabel.length"
+            [labels]="dayLabel"
+            [data]="dailyHum"
+            [style]="'line'"
+        >
+      </app-details>
+  </div>
+</div>
+
+<div class="details-container">
+  <div class="details-block">
+    <p>Temperatur der letzten 7 Tage</p>
+      <app-details
+            *ngIf="weekLabel.length"
+            [labels]="weekLabel"
+            [data]="weeklyTemp"
+            [style]="'line'"
+        >
+      </app-details>
+  </div>
+
+  <div class="details-block">
+    <p>Luftfeuchtigkeit der letzten 7 Tage</p>
+    <app-details
+            *ngIf="weekLabel.length"
+            [labels]="weekLabel"
+            [data]="weeklyHum"
+            [style]="'line'"
+        >
+      </app-details>
+  </div>
+</div>
+
+<div class="details-container">
+  <div class="details-block">
+    <p>Temperatur des letzten Monats</p>
+      <app-details
+            *ngIf="monthLabel.length"
+            [labels]="monthLabel"
+            [data]="monthlyTemp"
+            [style]="'line'"
+        >
+      </app-details>
+  </div>
+
+  <div class="details-block">
+    <p>Luftfeuchtigkeit des letzten Monats</p>
+    <app-details
+            *ngIf="monthLabel.length"
+            [labels]="monthLabel"
+            [data]="monthlyHum"
+            [style]="'line'"
+        >
+      </app-details>
+  </div>
+</div>
+
+<div class="details-container">
+  <div class="details-block">
+    <p>Temperatur des letzten Monats</p>
+      <app-details
+            *ngIf="yearLabel.length"
+            [labels]="yearLabel"
+            [data]="yearlyTemp"
+            [style]="'line'"
+        >
+      </app-details>
+  </div>
+
+  <div class="details-block">
+    <p>Luftfeuchtigkeit des letzten Monats</p>
+    <app-details
+            *ngIf="yearLabel.length"
+            [labels]="yearLabel"
+            [data]="yearlyHum"
+            [style]="'line'"
+        >
+      </app-details>
   </div>
 </div>
 
