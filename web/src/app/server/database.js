@@ -104,17 +104,6 @@ app.get('/get/:sensor/data/last', (req, res) => {
   }
 );
 /**
- * getWeatherDataSince
- * WIP
- */
-app.get('/get/all/data/since/:startDate', (req, res) => {
-    const startDate = req.params.startDate;
-    // work in progress
-    const sql = `SELECT COUNT(regen) FROM HISTORY WHERE date_time like ${startDate}`;
-    getData(sql, res);
-  }
-);
-/**
  * @param sensor 
  * @param format
  * @param end YYYY-MM-DD
@@ -173,85 +162,6 @@ app.get('/get/:sensor/data/:format/:start/:end', (req, res) => {
   getData(sql, res);
   }
 );
-
-/**
- * getDataOrderedByMonth
- * @params year Das Jahr, welches abgefragt werden soll
- * TBD
- */
-app.get('/get/all/data/:year', (req, res) => {
-    const year = req.params.year;
-  }
-);
-
-/**
- * getDataOrderedByMonthBySensor
- * @params year das Jahr, welches abgefragt werden soll
- * TBD
- */
-app.get('/get/:sensor/data/:year', (req, res) => {
-  const year = req.params.year;
-  const sensor = req.params.sensor;
-  }
-);
-
-/**
- * getMonthlyDataBySensor
- * @params sensor Sensor, für den die Monatiliche Statistik erstellt werden soll
- * TBD
- */
-app.get('/get/:sensor/data/monthly/log', (req, res) => {
-  const month = new Date().getMonth;
-  const sensor = req.params.sensor;
-  }
-);
-/**
- * getMonthlyData
- * TBD
- */
-app.get('/get/all/data/monthly/log', (req, res) => {
-  const month = new Date().getMonth;
-  console.log(month);
-  }
-);
-
-/**
- * getStatisticDataByYear
- */
-/**
- * getStatisticDataByYearBySensor
- */
-/**
- * getStatisticDataByMonth
- */
-/**
- * getStatisticDataByMonthBySensor
- */
-/**
- * getStatisticDataByStartDate
- */
-/**
- * getStatisticDataByStartDateBySensor
- */
-
-/**
- * insertWeatherData
- * @params 
- */
-// app.post('/insert/data', (req, res) => {
-//   const id = getData("SELECT MAX(ID) FROM HISTORY", res) + 1;
-//   const temperature = req.body.temperature;
-//   const humidity = req.body.humidity;
-//   const air_pressure = req.body.air_pressure;
-//   const sensor = req.body.sensor;
-//   const datetime = new Date();
-
-//   const sql = `INSERT INTO HISTORY(ID, temperature, humidity, air_pressure, sensor, date_time) 
-//               VALUES(${id}, ${temperature}, ${humidity}, ${air_pressure}, "${sensor}", "${datetime}");`
-//   changeData(sql, res)
-//   console.log("es passiert was")
-//   }
-// );
 
 app.post('/insert/data', (req, res) => {
   const sqlInsert = `INSERT INTO HISTORY (temperature, humidity, air_pressure, sensor, date_time) VALUES (?, ?, ?, ?, ?)`;

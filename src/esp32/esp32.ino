@@ -21,7 +21,7 @@ DHT dht(DHTPIN, DHTTYPE);
 const char* baseURL = DATABASE_SERVER;
 
 // Sensornamen definieren
-const char* sensorName = "MDR-Turm";
+const char* sensorName = "Uniriese";
 
 // Definieren der LED-Pin
 const int led = 26;
