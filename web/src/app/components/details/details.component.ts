@@ -1,19 +1,26 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input, NgModule, OnChanges, OnInit } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
+
+interface StatData {
+  label: string;
+  data: number[];
+}
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss'
 })
+
 export class DetailsComponent {
   
   @Input() sensor:any;
-  @Input() data:object[] =[{}];
+  @Input() data:string[] | StatData[] =[];
   //@Input() title?:string;
   @Input() style?:'bar' | 'line' | 'scatter' | 'bubble' | 'pie' | 'doughnut' | 'polarArea' | 'radar';
   @Input() options:any;
-  @Input() labels?:string[];
+  @Input() labels?:string[] | StatData[];
   @Input() chartColor?:string;
 
   src: any;

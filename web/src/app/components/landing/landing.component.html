@@ -1,50 +1,43 @@
-<div class="body">
-    <div class="sensor-container">
-        <div *ngFor="let sensor of sensorsData" class="sensor-data" >
-          <app-weathercards class="cards"
-            [sensor]="sensor.sensor"
-            [temperature]="sensor.temperature"
-            [humidity]="sensor.humidity"
-            [date]="sensor.DATE_TIME"
-            (click)="openDialog(sensor)"
-            >
-          </app-weathercards>
-        </div>
-        <!-- 
-        <div class="charts" *ngIf="sensorsData.length >= 1">
-          
-          <div id="yearly">
-            <app-details
-            [title]="'Luftfeuchtigkeit in % der letzten 12 Monate'"
-            [data]="statHumDataCurrentYear"
-            [labels]="statLabelCurrentYear"
-            >
-            </app-details>
-            <app-details
-            [title]="'Temperatur in °C der letzten 12 Monate'"
-            [data]="statTempDataCurrentYear"
-            [labels]="statLabelCurrentYear"
-            >
-            </app-details>
-           
-          </div>
-          <div id="alltime">
-            <app-details
-            [title]="'Luftfeuchtigkeit in % seit Datenerfassung'"
-            [data]="statHumDataAllTime"
-            [labels]="statLabelAllTime"
-            >
-            </app-details>
-            <app-details
-            [title]="'Temperatur in °C seit Datenerfassung'"
-            [data]="statTempDataAllTime"
-            [labels]="statLabelAllTime"
-            >
-            </app-details>
-          </div>
-        </div>
-    </div> -->
-    
+<div class="body" id="overlay">
+
+  <div class="sensor-wrapper">
+  <button class="nav-button left" (click)="scrollLeft()">❮</button>
+
+  <div #scrollContainer class="sensor-container">
+    <div *ngFor="let sensor of sensorsData" class="sensor-data">
+      <app-weathercards class="card"
+        [sensor]="sensor.sensor"
+        [temperature]="sensor.temperature"
+        [humidity]="sensor.humidity"
+        [date]="sensor.DATE_TIME"
+        (click)="openDialog(sensor)">
+      </app-weathercards>
+    </div>
+  </div>
+
+  <button class="nav-button right" (click)="scrollRight()">❯</button>
+  </div>
+
+<div class="details-container">
+  <div class="details-block">
+    <p>Temperatur der letzten 24 Stunden</p>
+      <app-details
+            *ngIf="dayLabel.length"
+            [labels]="dayLabel"
+            [data]="dailyStats"
+            [style]="'line'"
+        >
+      </app-details>
+  </div>
+
+  <div class="details-block">
+    <p>Temperatur der letzten 24 Stunden</p>
+    <app-details></app-details>
+  </div>
+</div>
+
+
+  
     <!-- loading container: https://uiverse.io/AnnixArt/wonderful-liger-82 -->
     <div *ngIf="sensorsData.length === 0">
       <div class="container">

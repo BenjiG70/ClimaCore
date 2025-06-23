@@ -1,0 +1,46 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+$light_blue: #B3DAEE;
+$another_blue: #8cabbb;
+
+.button {
+    width: 120px;
+    height: 45px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    background-color: $another_blue; /* Grüner Hintergrund */
+    color: white;              /* Weißer Text */
+    border: none;              /* Kein Rand */
+    border-radius: 8px;        /* Abgerundete Ecken */
+    cursor: pointer;           /* Zeiger-Cursor bei Hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* weicher Schatten */
+    transition: all 0.3s ease; /* Sanfte Übergänge */
+}
+
+.button:hover {
+    transform: scale(1.05);     /* Leichtes Vergrößern beim Hover */
+}
+
+.button:active {
+    transform: scale(0.98);     /* Leichtes Schrumpfen beim Klicken */
+}
+
+
+header{
+    position: sticky;
+    top: 0;
+}
+.content {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.header {
+    background-color: $another_blue;
+    font-family: 'Open Sans';
+    height: 60px;
+    width: 100%;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+}

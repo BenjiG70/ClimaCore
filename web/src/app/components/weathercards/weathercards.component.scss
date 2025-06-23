@@ -4,6 +4,7 @@
 $violett: #7474BF;
 $tuerkis: #97C9C0;
 $light_blue: #B3DAEE;
+$another_blue: #8cabbb;
 
 $colorlist: ($violett, $tuerkis, $light_blue);
 $key: random(length($colorlist));
@@ -23,7 +24,7 @@ body {
 	font-family: 'Open Sans';
 	position: relative;
 	display: grid;
-	background-color: $light_blue;
+	background-color: $another_blue;
 }
 
 .currentWeather{

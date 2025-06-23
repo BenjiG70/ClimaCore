@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,7 +10,9 @@ import { WeathercardsComponent } from './components/weathercards/weathercards.co
 import { DetailsComponent } from './components/details/details.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ChartModule } from 'primeng/chart';
-import { PopupComponent } from './components/popup/popup.component';
+
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { StatComponentComponent } from './components/stat-component/stat-component.component';
 
 @NgModule({
   declarations: [
@@ -17,17 +20,20 @@ import { PopupComponent } from './components/popup/popup.component';
     LandingComponent,
     WeathercardsComponent,
     DetailsComponent,
-    PopupComponent
+    StatComponentComponent,
   ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ChartModule
+    ChartModule,
+    DragDropModule
   ],
-  providers: [],
+  providers: [
+                {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+              ],
   bootstrap: [AppComponent],
-  exports: []
+  exports: [],
 })
 export class AppModule { }

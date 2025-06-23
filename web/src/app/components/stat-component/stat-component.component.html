@@ -1,0 +1,51 @@
+<div class="body">
+    <header>
+    <div class="header-container">
+    <button class="button" (click)="goBack()">
+        zurück
+    </button>
+
+    <div class="header" *ngIf="sensor">         
+        <span>Aufrufzeit: {{ formattedDate }} </span>
+        <span>Abgefragter Sensor: {{ sensor.sensor }}</span> <br />
+        <span>Temperatur: {{ sensor.temperature }} &deg;C </span>
+        <span>Luftfeuchtigkeit: {{ sensor.humidity }} %</span>
+    </div>
+</div>
+
+    </header>
+    <div class="content">
+        <p> Temperatur und Luftfeuchtigkeit des Sensors "{{sensor.sensor}}" der letzten 24 Stunden</p>
+        <app-details
+            *ngIf="dayLabel.length"
+            [labels]="dayLabel"
+            [data]="dailyStats"
+            [style]="'line'"
+        >
+        </app-details>
+         <p> Temperatur und Luftfeuchtigkeit des Sensors "{{sensor.sensor}}"" der letzten Woche</p>
+        <app-details
+            *ngIf="weekLabel.length"
+            [labels]="weekLabel"
+            [data]="weeklyStats"
+            [style]="'line'"
+        >
+        </app-details>
+         <p> Temperatur und Luftfeuchtigkeit des Sensors "{{sensor.sensor}}" des letzten Monats</p>
+        <app-details
+            *ngIf="monthLabel.length"
+            [labels]="monthLabel"
+            [data]="monthlyStats"
+            [style]="'line'"
+        >
+        </app-details>
+         <p> Temperatur und Luftfeuchtigkeit des Sensors "{{sensor.sensor}}" des letzten Jahres</p>
+        <app-details
+            *ngIf="yearLabel.length"
+            [labels]="yearLabel"
+            [data]="yearlyStats"
+            [style]="'line'"
+        >
+        </app-details>
+    </div>
+</div>
