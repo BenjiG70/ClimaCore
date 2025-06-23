@@ -17,24 +17,22 @@
 
 DHT dht(DHTPIN, DHTTYPE);
 
-// Definieren der Server-Base URL
+// define the db server -> keep the secrets.h in mind
 const char* baseURL = DATABASE_SERVER;
 
-// Sensornamen definieren
+// definition of the sensor
 const char* sensorName = "Uniriese";
 
-// Definieren der LED-Pin
+// definition of the led
 const int led = 26;
 
 void setup() {
-
-  // put your setup code here, to run once:
   Serial.begin(115200);
 
   // starte den Sensor
   dht.begin();
 
-  // starte die Netzwerkkopplung
+  // start networkconnection
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
 
   while (WiFi.status() != WL_CONNECTED) {
@@ -43,7 +41,7 @@ void setup() {
   }
   Serial.println(WiFi.localIP());
 
-  // initialisieren der LED(s)
+  // initialize LED(s)
   pinMode(led, OUTPUT);
 }
 
@@ -51,7 +49,13 @@ void loop() {
   digitalWrite(led, HIGH);
   delay(1000);
   digitalWrite(led, LOW);
-
+  /**
+   * connect the esp32 with teh network
+   * then pull the temperature and humidity data and put both togheter with the sensorname into a string.
+   * send this json type string to the database server and catch the answer. 
+   * write the answer and data in the serial output.
+   * sleep for 5 minutes (900.000 ms)
+   */
   if (WiFi.status() == WL_CONNECTED) {
     HTTPClient http;
     WiFiClient wifiClient;
@@ -82,7 +86,7 @@ void loop() {
     }
 
     http.end();
-
+    //optional
     Serial.println("------------------------------------");
     Serial.println("Auslesen erfolgreich!");
     Serial.print("Temperatur: ");

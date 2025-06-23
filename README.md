@@ -1,18 +1,21 @@
 # ClimaCore
+by BenjiG70
 
 ## Overview
-This repo is build for a weatherstation powered by a WEMOS D1 Mini. 
-For web- and database- server we use a Raspberry Pi 3. Here you can get 3D-Models of Serverracks for this. 
+This repo is build for a weatherstation powered by a WEMOS D1 Mini or ESP32. 
+For web- and database server we use a Raspberry Pi. Here you can get 3D-Models of Serverracks for this. 
 
 
 ## Version logs
 | Version | Description | Date|
 |--------:|------------:|----:|
 |1.0| basic functionality (webserver with charts and database connectivity); Arduino / ESP8266 tesscript | 2024.11.07|
+|2.0 | completely reworked ui/ux, databasefunctions and backend | 2025.06.23|
 
-## Get started
 
-Install Nginx 
+## Getting started
+
+### Install Nginx 
 
 `sudo apt update`
 `sudo apt install nginx`
@@ -34,11 +37,11 @@ To restart nginx:
 Test configurationfile
 `sudo nginx -t`
 
-if the firewall makes stuff
+if the firewall hit problems
 `sudo ufw allow 2292`
 
 
-Setup Nginx Server
+### Setup Nginx Server
 
 Nginx configuration File (nginx.conf)
 ```
@@ -82,9 +85,11 @@ test database
 `node path/to/your/database/folder/database.js`
 
 
-Setup automatic start aufter boot of the DB Server
-
+### Setup automatic start of the DB server after boot
+build a file for the database service
 `sudo nano /etc/systemd/system/dbserver.service`
+
+write your paths and user into the file
 ```
 [Unit]
 Description=Start Database Server via JavaScript
@@ -110,3 +115,6 @@ reboot raspy
 `sudo reboot`
 check status of db server
 `sudo systemctl status dbserver.service`
+
+## wiring the esp32
+![](./src/esp32/Steckplatine_Climacore.png)
