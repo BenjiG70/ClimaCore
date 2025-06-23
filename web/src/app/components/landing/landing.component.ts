@@ -133,6 +133,17 @@ statData: {
    * Funktion, um die letztmöglichen Wetterdaten aus der Datenbank über den Datenbankservice abzurufen.
    */
 async updateSensorsData(): Promise<void> {
+  this.dailyTemp=[];
+  this.dailyHum= [];
+
+  this.weeklyTemp=[];
+  this.weeklyHum=[];
+
+  this.monthlyTemp=[];
+  this.monthlyHum=[];
+
+  this.yearlyTemp=[];
+  this.yearlyHum=[];
   try {
     // Einzigartige Sensoren, um unnötige Abfragen zu vermeiden
     const uniqueSensors = [...new Set(this.sensors)];
