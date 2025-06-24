@@ -13,6 +13,7 @@ import { ChartModule } from 'primeng/chart';
 
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { StatComponentComponent } from './components/stat-component/stat-component.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { StatComponentComponent } from './components/stat-component/stat-compone
     WeathercardsComponent,
     DetailsComponent,
     StatComponentComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserAnimationsModule,

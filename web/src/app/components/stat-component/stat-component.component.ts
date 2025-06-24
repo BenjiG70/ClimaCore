@@ -122,6 +122,6 @@ export class StatComponentComponent implements OnInit {
    * Navigates back to the home page.
    */
   goBack(): void {
-    this.router.navigate(['home']); 
+    this.router.navigate(['']); 
   }
 }
