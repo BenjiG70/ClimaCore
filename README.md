@@ -61,14 +61,14 @@ http {
 
     server {
         listen 2292; #define port of webserver
-        root /var/html/dist/web/browser;
+        root /var/www/html/dist/web/browser;
 
         # Optionally, define an index file (like index.html)
         index index.html;
 
         # Add additional configuration, like handling 404 errors if necessary
         location / {
-            try_files $uri $uri/ =404;
+            try_files $uri $uri/ /index.html;
         }
     }
 }
